@@ -28,3 +28,9 @@ Auto create a div with a class
 
 Select the same content down and change it
 •	[Select text] + Ctrl D + Ctrl D + ...
+
+Create 3 divs with class box
+•	.box*3
+
+
+
