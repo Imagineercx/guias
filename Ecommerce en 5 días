@@ -1,0 +1,9 @@
+Descargar el zip de Magento más reciente y pasarlo por FTP al servidor de Lightsail.
+
+Descomprimir en /var/www/html
+
+Descargar mysql, apache y php (con las extensiones necesarias https://devdocs.magento.com/guides/v2.3/install-gde/system-requirements-tech.html)
+
+Entrar por navegador a la dirección IP de la página e instalar el magento.
+
+
