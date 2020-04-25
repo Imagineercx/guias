@@ -1,4 +1,6 @@
 
+SOLO FUNCIONA SI SE LOGUEA POR MEDIO DE LA CONSOLA DE AMAZON SSH en el Web
+
 crontab -e 
 
 # REMOVE A SIMILAR LINE TO THIS
@@ -31,10 +33,13 @@ chmod 1777 /tmp
 echo "root" > /etc/cron.allow
 
 
+cd /opt/liferay/tomcat-9.0.17/bin
+rm -r kinsing*
+
+
 ps -ef | grep kdevtmpfsi 
 	-> me da el process ID
 	
 kill -9 PROCESS_ID
 
 reboot now
-  
