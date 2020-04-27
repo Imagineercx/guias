@@ -1,0 +1,37 @@
+
+apt-get install libapache2-mod-geoip
+
+
+apache2ctl -M | grep -E "geoip|rewrite"
+
+nano /etc/apache2/geoip.conf
+And add the following
+              <Location />
+                      SetEnvIf GEOIP_COUNTRY_CODE IN BlockCountry
+                      SetEnvIf GEOIP_COUNTRY_CODE CN BlockCountry
+                      SetEnvIf GEOIP_COUNTRY_CODE PK BlockCountry
+                      SetEnvIf GEOIP_COUNTRY_CODE LV BlockCountry
+                      SetEnvIf GEOIP_COUNTRY_CODE SG BlockCountry
+                      SetEnvIf GEOIP_COUNTRY_CODE RU BlockCountry
+                      Deny from env=BlockCountry
+              </Location>
+
+nano /etc/apache2/mods-available/geoip.conf
+  GeoIPEnable On
+  GeoIPDBFile /usr/share/GeoIP/GeoIP.dat
+
+nano /etc/apache2/apache2.conf
+  IncludeOptional geoip.conf
+  
+
+
+service apache2 restart 
+
+
+
+
+
+
+
+Referencia
+  https://linuxconfig.org/redirect-or-block-traffic-based-on-geographical-location-apache-geoip-mod
