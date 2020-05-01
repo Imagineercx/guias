@@ -10,12 +10,12 @@ Scripts
    crossorigin=""></script>
   
   
-  --- Seteo de Latitude y Longitud inicial
+  // Seteo de Latitude y Longitud inicial
   var latitude =  9.934739;
 	var	longitude =-84.087502;
   
   
-  -- Agrear el mapa a un div - el 16 es el Zoom
+  // Agrear el mapa a un div - el 16 es el Zoom
   var mymap = L.map("primaryLocationDiv").setView([latitude, longitude], 16);
   	
   		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -23,7 +23,7 @@ Scripts
   	}).addTo(mymap);
     
     
-    -- Agregar un marcador (el punto arrastrable)
+    // Agregar un marcador (el punto arrastrable)
     var myMarker = L.marker([latitude, longitude], {title: "My Loation", alt: "The Big I", draggable: true})
       	.addTo(mymap)
       	.on('dragend', function() { /// Metodo cuando se mueve el punto en el mapa
@@ -34,34 +34,33 @@ Scripts
       
       		$("#<portlet:namespace/>latitude").val(lat[1]);
       		$("#<portlet:namespace/>longitude").val(lng[0]);
-          // Reverse Mapping para obtener la dirección basado en cordenadas
+                // Reverse Mapping para obtener la dirección basado en cordenadas
       		$.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat[1]+ '&lon=' + lng[0].trim(), function(data){
-      		    // Save location
-      			$("#<portlet:namespace/>road").val(data.address.road);
-      			$("#<portlet:namespace/>address").val(data.address.address29);
-      			$("#<portlet:namespace/>suburb").val(data.address.suburb);
-      			$("#<portlet:namespace/>city").val(data.address.city);
-      			$("#<portlet:namespace/>county").val(data.address.county);
-      			$("#<portlet:namespace/>state").val(data.address.state);
-      			$("#<portlet:namespace/>postCode").val(data.address.postcode);
-      			$("#<portlet:namespace/>country").val(data.address.country);
-      			$("#<portlet:namespace/>displayDirection").val(data.display_name);
-      
+      		        // Save location
+      			$("#road").val(data.address.road);
+      			$("#address").val(data.address.address29);
+      			$("#suburb").val(data.address.suburb);
+      			$("#city").val(data.address.city);
+      			$("#county").val(data.address.county);
+      			$("#state").val(data.address.state);
+      			$("#postCode").val(data.address.postcode);
+      			$("#country").val(data.address.country);
+      			$("#displayDirection").val(data.display_name);
       		});
-  		});
+  	});
 // Seteo de Informacion al cargar  - primera vez
-		$.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+latitude+'&lon='+ longitude, function(data){
-    		// Set Info to panels
-    		$("#<portlet:namespace/>displayDirection").val(data.display_name);
-    		$("#<portlet:namespace/>road").val(data.address.road);
-    		$("#<portlet:namespace/>address").val(data.address.address29);
-    		$("#<portlet:namespace/>suburb").val(data.address.suburb);
-    		$("#<portlet:namespace/>city").val(data.address.city);
-    		$("#<portlet:namespace/>county").val(data.address.county);
-    		$("#<portlet:namespace/>state").val(data.address.state);
-    		$("#<portlet:namespace/>postCode").val(data.address.postcode);
-    		$("#<portlet:namespace/>country").val(data.address.country);
-    	});
+$.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+latitude+'&lon='+ longitude, function(data){
+	// Set Info to panels
+	$("#road").val(data.address.road);
+	$("#address").val(data.address.address29);
+	$("#suburb").val(data.address.suburb);
+	$("#city").val(data.address.city);
+	$("#county").val(data.address.county);
+	$("#state").val(data.address.state);
+	$("#postCode").val(data.address.postcode);
+	$("#country").val(data.address.country);
+	$("#displayDirection").val(data.display_name);
+});
 
 
 
