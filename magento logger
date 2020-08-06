@@ -1,0 +1,6 @@
+  # El BP si bien no es una variable definida funciona como el Magento current path
+  
+  $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/log.log');
+  $logger = new \Zend\Log\Logger();
+  $logger->addWriter($writer);
+  $logger->info("Printing this");
